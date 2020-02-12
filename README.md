@@ -51,6 +51,28 @@ var_dump($uri->toArray());
 
 ```
 
+Like previously mentioned the URI components are public properties, which can be used to manipulate the URI.
+For example when working with relative urls found in websites, i.e. http and https schemes or some other schemes that
+"allow" some loose interpretations of URI's.
+
+```php
+<?php
+
+use Haukurh\Uri\Uri;
+
+$relativeAnchorLink = '/public/css/main.css?v=1.3';
+
+$uri = new Uri($relativeAnchorLink);
+
+echo $uri; // /public/css/main.css?v=1.3
+
+$uri->scheme = 'https';
+$uri->authority = 'www.example.com';
+
+echo $uri; // https://www.example.com/public/css/main.css?v=1.3
+
+```
+
 ## Run tests
 
 Some test have been created to ensure parsing of components are correct.

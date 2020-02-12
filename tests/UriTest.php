@@ -99,4 +99,17 @@ final class UriTest extends TestCase
 
         $this->assertEquals('https://www.ietf.org/rfc/rfc2396.txt', (string) $uri);
     }
+
+    public function testToArrayFunction(): void
+    {
+        $uri = new Uri('HTTPS://www.ietf.org/rfc/rfc2396.txt?t=1234');
+
+        $this->assertEquals([
+            'scheme' => 'https',
+            'authority' => 'www.ietf.org',
+            'path' => '/rfc/rfc2396.txt',
+            'query' => 't=1234',
+            'fragment' => null,
+        ], $uri->toArray());
+    }
 }

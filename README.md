@@ -25,15 +25,29 @@ require_once 'vendor/autoload.php';
 
 use Haukurh\Uri\Uri;
 
-$uri = new Uri('HTTPS://www.example.com/some/path?q=term#result1');
+$uri = new Uri('HTTPS://john.doe@www.example.com:8000/some/path?q=term#result1');
 
-echo $uri->getScheme(); // https
-echo $uri->getAuthority(); // www.example.com
-echo $uri->getPath(); // /some/path
-echo $uri->getQuery(); // q=term
-echo $uri->getFragment(); // result1
+echo $uri->getScheme() . PHP_EOL; // https
+echo $uri->getAuthority() . PHP_EOL; // john.doe@www.example.com:8000
+echo $uri->getPath() . PHP_EOL; // /some/path
+echo $uri->getQuery() . PHP_EOL; // q=term
+echo $uri->getFragment() . PHP_EOL; // result1
 
-echo $uri; // https://www.example.com/some/path?q=term#result1
+echo $uri . PHP_EOL; // https://john.doe@www.example.com:8000/some/path?q=term#result1
+
+var_dump($uri->toArray());
+// array(5) {
+//   ["scheme"]=>
+//   string(5) "https"
+//   ["authority"]=>
+//   string(29) "john.doe@www.example.com:8000"
+//   ["path"]=>
+//   string(10) "/some/path"
+//   ["query"]=>
+//   string(6) "q=term"
+//   ["fragment"]=>
+//   string(7) "result1"
+// }
 
 ```
 

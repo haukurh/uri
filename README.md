@@ -37,7 +37,19 @@ echo $uri; // https://www.example.com/some/path?q=term#result1
 
 ```
 
+## Run tests
+
+Some test have been created to ensure parsing of components are correct.
+
+Run tests with phpunit
+
+```bash
+./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/
+```
+
 ## ToDo
 
 - Break down authority to it's subcomponents.
 - Add some functionality based around URL based schemes like http, https
+- Implement better tests with focus on some edge cases.
+- Refactor tests

@@ -2,6 +2,8 @@
 
 namespace Haukurh\Uri;
 
+use function PHPUnit\Framework\isNull;
+
 class Uri
 {
     public $scheme;
@@ -159,16 +161,28 @@ class Uri
     public function __toString()
     {
         $scheme = $this->getScheme();
+        $authority = $this->getAuthority();
         $query = $this->getQuery();
         $fragment = $this->getFragment();
 
         $uri = !is_null($scheme) ? "{$scheme}:" : '';
-        $uri .= $this->getAuthority() ?? '';
+        $uri .= !is_null($authority) ? "//{$authority}" : '';
         $uri .= $this->getPath() ?? '';
         $uri .= !is_null($query) ? "?{$query}" : '';
         $uri .= !is_null($fragment) ? "#{$fragment}" : '';
 
         return $uri;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'scheme' => $this->getScheme(),
+            'authority' => $this->getAuthority(),
+            'path' => $this->getPath(),
+            'query' => $this->getQuery(),
+            'fragment' => $this->getFragment(),
+        ];
     }
 
 }

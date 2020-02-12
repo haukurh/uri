@@ -92,4 +92,11 @@ final class UriTest extends TestCase
             $this->assertEquals($path, (new Uri($uri))->getFragment());
         }
     }
+
+    public function testTypeCastToString(): void
+    {
+        $uri = new Uri('HTTPS://www.ietf.org/rfc/rfc2396.txt');
+
+        $this->assertEquals('https://www.ietf.org/rfc/rfc2396.txt', (string) $uri);
+    }
 }

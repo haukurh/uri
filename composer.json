@@ -17,5 +17,7 @@
             "email": "haukur@haukurh.is"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^7.1"
+    }
 }

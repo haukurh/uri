@@ -2,8 +2,6 @@
 
 namespace Haukurh\Uri;
 
-use function PHPUnit\Framework\isNull;
-
 class Uri
 {
     public $scheme;
@@ -33,7 +31,7 @@ class Uri
         preg_match('/^[a-zA-Z0-9\.\+-]+:/', $uri, $match);
 
         if (isset($match[0])) {
-            return strtolower(rtrim($match[0], ':'));
+            return rtrim($match[0], ':');
         }
         return null;
     }
@@ -135,7 +133,7 @@ class Uri
 
     public function getScheme(): ?string
     {
-        return strtolower($this->scheme);
+        return is_string($this->scheme) ? strtolower($this->scheme) : $this->scheme;
     }
 
     public function getAuthority(): ?string
